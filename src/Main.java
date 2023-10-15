@@ -5,8 +5,11 @@ public class Main {
 
         //Factory design pattern
         ShapeFactory shapeFactory = new ShapeFactory();
-        Shape triangle = shapeFactory.getShapeInstance("Triangle");
+        IShape triangle = shapeFactory.getShapeInstance("Triangle");
         triangle.draw();
+
+        IShape square = shapeFactory.getShapeInstance("Square");
+        square.draw();
 
         //Singleton design pattern
 

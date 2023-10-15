@@ -1,7 +1,7 @@
 package pattern.factory;
 
 public class ShapeFactory {
-    public Shape getShapeInstance(String type) {
+    public IShape getShapeInstance(String type) {
         if(type.equals("Triangle")) {
             return new Triangle();
         } else if(type.equals("Rectangle")) {
