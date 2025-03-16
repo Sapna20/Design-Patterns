@@ -1,0 +1,62 @@
+Requirement
+-----------
+Objects
+-----------
+List of Integer
+
+***********
+Flow
+***********
+List of integer is given we need to sort it using different sorting techniques
+
+
+class Main {
+    SortingStrategy sortingStrategy1 = new BubbleSort();
+    SortingContext sortingContext = new SortingContext(sortingStrategy1);
+
+    List<Integer> ls = new ArrayList<>();
+    ls.add(1);ls.add(2);ls.add(6);ls.add(-7);
+    sortingContext.sortList(list);
+
+    ls.add(40);ls.add(2);
+    sortingContext.setSortingStrategy(new MergeSort());
+    sortingContext.sortList(list);
+
+}
+
+class SortingContext {
+    SortingStrategy sortingStrategy;
+    SortingContext(sortingStategy) {
+        this.sortingStategy = sortingStategy;
+    }
+
+    void setSortingStrategy(sortingStrategy) {
+        this.sortingStategy = sortingStategy;
+    }
+
+    List<Integer> sortList(list) {
+        return sortingStategy.sort(list);
+    }
+}
+
+interface SortingStrategy {
+    List<Integer> sort(List<Integer> list);
+}
+
+class BubbleSort implements SortingStrategy {
+    @Overrride
+    List<Integer> sort(List<Integer> list) {
+        //buble sort implementation
+    }
+}
+
+class MergeSort implements SortingStrategy {
+    @Overrride
+    List<Integer> sort(List<Integer> list) {
+        //merge sort implementation
+    }
+}
+
+// in future i want to introduce new sorting strategy using quick sort,
+// i can scale my current application by 3rd time implementing sortingStrategy
+

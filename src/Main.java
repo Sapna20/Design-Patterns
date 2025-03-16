@@ -1,9 +1,13 @@
+import pattern.builder.Computer;
+import pattern.builder.ComputerBuilder;
+import pattern.builder.ComputerDirector;
+import pattern.builder.DesktopComputerBuilder;
 import pattern.factory.*;
 import pattern.singleton.WaterTank;
 
 public class Main {
-    public static void main(String[] args) {
 
+    private static void factoryDesignDemoBasic() {
         //Factory design pattern
         System.out.println("-------------------------Factory design pattern -------------------------");
 
@@ -16,7 +20,9 @@ public class Main {
 
         IShape rectangle = shapeFactory.getShapeInstance("Rectangle");
         rectangle.draw();
+    }
 
+    private static void singletonDesignDemo() {
         //Singleton design pattern
         System.out.println("-------------------------Singleton design pattern -------------------------");
 
@@ -26,7 +32,26 @@ public class Main {
         System.out.println("Reset water level to 10: " + waterTank.getWaterLevel());
         System.out.println("Take units water: " + waterTank.takeWater(5));
         System.out.println("Fill 2 units water: " + waterTank.fillWater(2));
+    }
 
+    private static void builderDesignDemo() {
+        System.out.println("-------------------------builder design pattern -------------------------");
+        ComputerBuilder desktopBuilder = new DesktopComputerBuilder();
+        ComputerDirector director = new ComputerDirector(desktopBuilder);
+        Computer desktop = director.constructComputer();
+
+        // Access the constructed Computer object
+        System.out.println(desktop.toString());
+
+    }
+
+    public static void main(String[] args) {
+
+        factoryDesignDemoBasic();
+
+        singletonDesignDemo();
+
+        builderDesignDemo();
 
     }
 }
