@@ -1,0 +1,72 @@
+Observer Design Pattern
+
+Requirement
+- when product is out of stock implement notify me feature in a Shopping Application
+Product - Observable
+Notification Service - Observer
+
+Flow
+- for a product when its out of stock then whenever that product quantity in inventory goes from
+  0 -> +x user should be notified.
+
+Objects
+- Product
+- Notification service
+- Main
+------------------------------------------------------------------
+
+interface StockObservable {
+    add(ObserverNotificationService o);
+    remove(ObserverNotificationService o);
+    setStock(int q);
+    notify();
+}
+
+class ProductA implements StockObservable {
+    List<ObserverNotificationService> ns = new ArrayList<>();
+    int quantity;
+    String name;
+    add(ObserverNotificationService o) {
+        ns.add(o);
+    }
+    remove(ObserverNotificationService o) {
+        ns.remove(o);
+    }
+    setStock(int q) {
+        if(quantity == 0 && q > 0)
+            notify();
+        quantity = q;
+    }
+    notify() {
+        for(ObserverNotificationService o in ns) {
+            o.update();
+        }
+    }
+}
+
+interface NotificationService {
+    update();
+}
+
+class EmailNotificationService implements NotificationService {
+    StockObservable st;
+    EmailNotificationService(StockObservable s) {
+        st = s;
+    }
+
+    update() {
+        Alert(st.name + " is back in the stock");
+    }
+}
+
+class Main {
+    StockObservable productA = new ProductA("A");
+    productA.ns.add(new EmailNotificationService("userEmail", productA));
+    productA.ns.add(new SMSNotificationService("userContactNo", productA));
+
+    productA.setStock(10);
+    productA.setStock(0);
+    productA.setStock(100);
+}
+
+
