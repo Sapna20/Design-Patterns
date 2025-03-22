@@ -1,0 +1,53 @@
+Composite Design Pattern
+
+Design calculator supporting basic operations +, -, *
+
+-----------------------------------------------------------------
+
+interface Literal () {
+    int evaluate();
+}
+
+class Operator implements Literal {
+    Character operator;
+    Literal left;
+    Literal right;
+
+    Operator(Character operator, Literal left, Literal right) {
+        this.operator = operator;
+        this.left = left;
+        this.right = right;
+    }
+
+    int evaluate() {
+        int a = left.evaluate;
+        int b = right.evaluate;
+        switch operator:
+            case '+':
+                return a + b;
+            case '-':
+                return a - b;
+            case '*':
+                return a * b;
+    }
+}
+
+class Operand implements Literal {
+    int number;
+    Operand(number) {
+        this.number = number;
+    }
+    int evaluate() {
+        return number;
+    }
+}
+
+class Main {
+    // 4*(2+3)
+    Literal addition = new Operator(+, new Operand(2), new Operand(3));
+    Literal multiplication = new Operator(*, new Operand(2), addition);
+
+    multiplication.evaluate();
+}
+
+// improvements --- using enum of operands and using arithmetic expression as class name instead of literal

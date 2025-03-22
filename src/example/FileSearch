@@ -1,0 +1,118 @@
+implemnet linux find command as an api ,the api willl support finding files that has given size requirements and a file with a certain format like
+
+find all file >5mb
+find all xml
+Assume file class
+{
+get name()
+directorylistfile()
+getFile()
+create a library flexible that is flexible
+Design clases,interfaces.
+
+class Node {
+    String name;
+    String extension;
+    int size;
+    String path;
+    Boolean isDirectory;
+    List<Nodes> subNodes;
+    addNode(Node ) {
+
+    }
+}
+
+class Criteria {
+    hasName;
+    hasExtension;
+    hasSize;
+    hasNoCriteria;
+    name;
+    extension;
+    size;
+    isOR;
+    isAND;
+}
+
+class Computer {
+    Node parent;
+    Search search = new Search();
+    Criteria
+    search.filterFileCriteria(critreia, parent)
+}
+
+
+class Search {
+    filterFileCriteria(Criteria c, Node parentDir) {
+        List<Files> files = getAllFiles(parentDir);
+        if(c.hasName) {
+            files = (new FileByName(c.name)).getFiles(files);
+        }
+        if(c.hasExtension) {
+            files = (new FileByExtension(c.extension)).getFiles(files);
+        }
+        if(c.hasSize) {
+            files = (new FileBySize(c.size)).getFiles(files);
+        }
+        return files;
+    }
+}
+class SearchOR extends Search {
+    @Override
+    filterFileCriteria(Criteria c, Node parentDir) {
+        List<Files> files = getAllFiles(parentDir);
+        if(c.hasName) {
+            files = set.addAll((new FileByName(name)).getFiles(files));
+        }
+        if(c.hasExtension) {
+            files = set.addAll((new FileByExtension(extension)).getFiles(files));
+        }
+        if(c.hasSize) {
+            files = set.addAll((new FileBySize(size)).getFiles(files));
+        }
+    }
+}
+
+
+interface GetFiles {
+    getFile(Node parentDir, String c);
+}
+
+class AllFiles implements GetFiles {
+
+    List<Files> files;
+    getAllFiles(Node parent) {
+        if(parent.isDirectory)
+            files.add(parent)
+        for(Node n : parent.subNodes) {
+            getAllFiles(n)
+        }
+    }
+
+    List<Files> getAllFiles(Node parent) {
+        getAllFiles(parent);
+    }
+}
+
+
+class FileByName {
+    List<File> getFiles(List<Node> files, String name) {
+        //match file names and return
+    }
+}
+
+
+class getFileByExtension {
+    List<File> getFileByExtension(List<Node> files, String extension) {
+        //match file extension and rt
+    }
+
+}
+
+class getFileBySize {
+    List<File> getFileBySize(int size) {
+        //match file size and return
+    }
+}
+
+
