@@ -1,1 +1,65 @@
 Decorator Pattern
+
+Design pizza cost calculation system where we have different kind of base pizza and different kind of toppings
+-------------------------
+
+interface Base {
+    int getTotalCost();
+}
+
+class Margherita implements Base {
+    int cost;
+    Margherita(int cost) {
+        this.cost = cost;
+    }
+    // getter and setter
+}
+
+class VegDelight implements Base {
+    int cost;
+    VegDelight(int cost) {
+        this.cost = cost;
+    }
+    // getter and setter
+}
+
+interface Toppings extend Base {
+    int getTotalCost;
+}
+
+class TomatoPizza implements Toppings {
+    int cost;
+    Base basePizze;
+    Tomato(int cost, Base basePizza) {
+        this.cost = cost;
+        this.basePizza = basePizza;
+    }
+
+    getCost() {
+        return this.cost + this.basePizza.getCost();
+    }
+}
+
+class GoldenCornPizza implements Toppings {
+    int cost;
+    Base basePizza;
+    GoldenCorn(int cost, Base basePizza) {
+        this.cost = cost;
+        this.basePizza = basePizza;
+    }
+
+    getCost() {
+        return this.cost + this.basePizza.getCost();
+    }
+}
+
+class Main {
+
+    Base margherita = new Margherita(120);
+    Topping tomatoMargheritaPizza = new TomatoPizza(10, margherita);
+
+    Topping finalCornTomatoMargheritaPizza = new GoldenCornPizza(30, tomatoMargheritaPizza)
+
+    System.out.println(finalCornTomatoMargheritaPizza.getCost());
+    // o/p - 160
+}
