@@ -1,0 +1,40 @@
+Design a System to handle null object
+-------------
+
+@Data
+abstract class Car {
+    abstract int getMaxSpeed();
+}
+
+@Data
+class Hyundai extend Car {
+    public int getMaxSpeed () {
+        return 200;
+    }
+}
+
+@Data
+class NULLCar extend Car {
+    public int getMaxSpeed () {
+        return 0;
+    }
+
+}
+
+class CarFactory {
+    public getCar(String brand) {
+        if(brand == "Hyundai")
+            return new Hyundai
+
+        return NULLCar;
+    }
+}
+
+class Main {
+    CarFactory carFactory = new CarFactory();
+    Car car1 = carFactory.getCar("Hyundai");
+    Car car2 = carFactory.getCar("Sample");
+
+    System.out.println(car1.getMaxSpeed());
+    System.out.println(car2.getMaxSpeed());
+}
